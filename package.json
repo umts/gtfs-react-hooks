@@ -1,14 +1,23 @@
 {
   "name": "gtfs-realtime-react-hooks",
-  "private": true,
+  "description": "React hooks for fetching data from gtfs-realtime sources.",
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gtfs-realtime-react-hooks.umd.cjs",
+  "module": "./dist/gtfs-realtime-react-hooks.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gtfs-realtime-react-hooks.js",
+      "require": "./dist/gtfs-realtime-react-hooks.umd.cjs"
+    }
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^6.3.5"
+    "vite": "*"
   }
 }
