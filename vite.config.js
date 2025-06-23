@@ -11,5 +11,17 @@ export default defineConfig({
       name: 'GtfsRealtimeReactHooks',
       fileName: 'gtfs-realtime-react-hooks',
     },
+    rollupOptions: {
+      external: ['react'],
+      output: {
+        globals: {
+          react: 'React',
+        },
+      },
+    },
+  },
+  test: {
+    environment: 'happy-dom',
+    setupFile: './test/setup.js',
   },
 })

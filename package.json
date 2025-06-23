@@ -19,9 +19,14 @@
     "lint": "eslint",
     "test": "vitest run --coverage --coverage.thresholds.100"
   },
+  "dependencies": {
+    "react": "19.*"
+  },
   "devDependencies": {
+    "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "eslint": "*",
+    "happy-dom": "*",
     "neostandard": "*",
     "vite": "*",
     "vitest": "*"
