@@ -15,9 +15,12 @@
     }
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "lint": "eslint"
   },
   "devDependencies": {
+    "eslint": "*",
+    "neostandard": "*",
     "vite": "*"
   }
 }
