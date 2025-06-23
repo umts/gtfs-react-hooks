@@ -20,6 +20,7 @@ describe('useRefresh', () => {
     resolve.mockImplementationOnce(async () => 'old data')
     const { result } = renderHook(() => useRefresh(resolve, 1000))
     await vi.waitFor(() => expect(result.current).toEqual('old data'))
+    expect(resolve).toHaveBeenCalledTimes(1)
 
     resolve.mockImplementationOnce(async () => 'new data')
     vi.advanceTimersByTime(1000)
