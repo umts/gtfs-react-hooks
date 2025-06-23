@@ -21,7 +21,7 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'happy-dom',
+    environment: 'jsdom',
     setupFile: './test/setup.js',
   },
 })
