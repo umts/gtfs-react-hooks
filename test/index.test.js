@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { useSample } from '../lib/index.js'
+import nothing from '../lib/index.js'
 
-describe('exports', () => {
-  it('exports a useSample hook', () => {
-    expect(useSample).toBeTypeOf('function')
+describe('entrypoint', () => {
+  it('exports nothing', () => {
+    expect(nothing).toBeNull()
   })
 })
