@@ -16,11 +16,14 @@
   },
   "scripts": {
     "build": "vite build",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run --coverage --coverage.thresholds.100"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "*",
     "eslint": "*",
     "neostandard": "*",
-    "vite": "*"
+    "vite": "*",
+    "vitest": "*"
   }
 }
