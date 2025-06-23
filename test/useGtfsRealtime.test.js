@@ -1,0 +1,24 @@
+import { renderHook } from '@testing-library/react'
+import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
+import fs from 'fs'
+import { describe, expect, it, vi } from 'vitest'
+import useGtfsRealtime from '../lib/useGtfsRealtime.js'
+
+const realtimeBuffer = fs.readFileSync('test/realtime.proto')
+const realtimeJSON = JSON.parse(fs.readFileSync('test/realtime-parsed.json'))
+const feedMessage = GtfsRealtimeBindings.transit_realtime.FeedMessage
+
+describe('useGtfsRealtime', () => {
+  it('returns undefined when unresolved', () => {
+    const resolve = async () => realtimeBuffer
+    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
+    expect(result.current).toBeUndefined()
+  })
+
+  it('returns the parsed object representation of the realtime data when resolved', async () => {
+    const resolve = async () => realtimeBuffer
+    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
+    await vi.waitFor(() => expect(result.current).toBeInstanceOf(feedMessage))
+    expect(result.current.toJSON()).toEqual(realtimeJSON)
+  })
+})
