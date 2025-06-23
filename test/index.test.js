@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import nothing from '../lib/index.js'
+import { useGtfsSchedule } from '../lib/index.js'
 
 describe('entrypoint', () => {
-  it('exports nothing', () => {
-    expect(nothing).toBeNull()
+  it('exports a useGtfsSchedule hook', () => {
+    expect(useGtfsSchedule).toBeTypeOf('function')
   })
 })
