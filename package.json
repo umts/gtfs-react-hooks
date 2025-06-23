@@ -20,11 +20,14 @@
     "test": "vitest run --coverage --coverage.thresholds.100"
   },
   "dependencies": {
+    "jszip": "3.*",
+    "papaparse": "5.*",
     "react": "19.*"
   },
   "devDependencies": {
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
+    "change-case": "*",
     "eslint": "*",
     "jsdom": "*",
     "neostandard": "*",
