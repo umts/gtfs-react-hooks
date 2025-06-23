@@ -20,6 +20,7 @@
     "test": "vitest run --coverage --coverage.thresholds.100"
   },
   "dependencies": {
+    "gtfs-realtime-bindings": "^1.1.1",
     "react": "19.*"
   },
   "devDependencies": {
