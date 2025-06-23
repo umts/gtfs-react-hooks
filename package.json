@@ -1,0 +1,34 @@
+{
+  "name": "gtfs-react-hooks",
+  "description": "React hooks for fetching data from gtfs sources.",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gtfs-react-hooks.umd.cjs",
+  "module": "./dist/gtfs-react-hooks.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gtfs-react-hooks.js",
+      "require": "./dist/gtfs-react-hooks.umd.cjs"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint",
+    "test": "vitest run --coverage --coverage.thresholds.100"
+  },
+  "dependencies": {
+    "react": "19.*"
+  },
+  "devDependencies": {
+    "@testing-library/react": "*",
+    "@vitest/coverage-v8": "*",
+    "eslint": "*",
+    "jsdom": "*",
+    "neostandard": "*",
+    "vite": "*",
+    "vitest": "*"
+  }
+}
