@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import nothing from '../lib/index.js'
+import { useGtfsRealtime } from '../lib/index.js'
 
 describe('entrypoint', () => {
-  it('exports nothing', () => {
-    expect(nothing).toBeNull()
+  it('exports a useGtfsRealtime hook', () => {
+    expect(useGtfsRealtime).toBeTypeOf('function')
   })
 })
