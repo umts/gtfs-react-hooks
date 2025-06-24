@@ -36,5 +36,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ steps.generate-token.outputs.token }}
+      - run: git config --global user.email "fake@user.com"
+      - run: git config --global user.name "Fake User"
       - run: git commit -m "actions commit [skip ci]" --allow-empty
       - run: git push
