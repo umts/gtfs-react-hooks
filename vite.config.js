@@ -23,5 +23,12 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./test/setup.js'],
+    coverage: {
+      enabled: true,
+      include: ['lib/**/*'],
+      thresholds: {
+        100: true,
+      },
+    }
   },
 })

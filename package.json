@@ -18,7 +18,7 @@
     "build": "vite build",
     "lint": "eslint",
     "release": "semantic-release",
-    "test": "vitest run --coverage --coverage.thresholds.100"
+    "test": "vitest run"
   },
   "dependencies": {
     "react": "19.*"
