@@ -1,6 +1,6 @@
 export default {
   branches: [
-    'main'
+    'main',
   ],
   plugins: [
     '@semantic-release/commit-analyzer',
@@ -13,12 +13,12 @@ export default {
         assets: [
           'package.json',
           'package-lock.json',
-          'CHANGELOG.md'
+          'CHANGELOG.md',
         ],
         // eslint-disable-next-line no-template-curly-in-string
-        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
-      }
+        message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+      },
     ],
-    '@semantic-release/github'
-  ]
+    '@semantic-release/github',
+  ],
 }
