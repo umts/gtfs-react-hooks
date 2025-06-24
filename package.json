@@ -23,11 +23,15 @@
     "react": "19.*"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "*",
+    "@semantic-release/git": "*",
+    "@semantic-release/npm": "*",
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "eslint": "*",
     "jsdom": "*",
     "neostandard": "*",
+    "semantic-release": "*",
     "vite": "*",
     "vitest": "*"
   }
