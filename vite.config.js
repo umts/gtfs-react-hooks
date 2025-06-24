@@ -7,19 +7,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'lib/index.js'),
       name: 'GtfsReactHooks',
+      entry: resolve(__dirname, 'lib/index.js'),
       fileName: 'gtfs-react-hooks',
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ['jszip', 'papaparse', 'react'],
-      output: {
-        globals: {
-          jszip: 'JSZip',
-          papaparse: 'Papa',
-          react: 'React',
-        },
-      },
+      external: ['change-case', 'jszip', 'gtfs-realtime-bindings', 'papaparse', 'react'],
     },
   },
   test: {

@@ -6,12 +6,11 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/gtfs-react-hooks.umd.cjs",
+  "main": "./dist/gtfs-react-hooks.js",
   "module": "./dist/gtfs-react-hooks.js",
   "exports": {
     ".": {
-      "import": "./dist/gtfs-react-hooks.js",
-      "require": "./dist/gtfs-react-hooks.umd.cjs"
+      "import": "./dist/gtfs-react-hooks.js"
     }
   },
   "scripts": {
@@ -21,6 +20,8 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "change-case": "5.*",
+    "gtfs-realtime-bindings": "1.*",
     "jszip": "3.*",
     "papaparse": "5.*",
     "react": "19.*"
@@ -32,9 +33,7 @@
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "conventional-changelog-conventionalcommits": "*",
-    "change-case": "*",
     "eslint": "*",
-    "gtfs-realtime-bindings": "*",
     "jsdom": "*",
     "neostandard": "*",
     "semantic-release": "*",
