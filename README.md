@@ -6,6 +6,14 @@ React hooks for fetching data from gtfs sources.
 
 TODO: Describe.
 
+## Contributing
+
+Bug reports and pull requests are welcome on [GitHub][github].
+
+Due to automatic version detection in our release process, **all commits to the master branch must follow
+[conventional commits][conventional-commits] formatting.** Pay close attention to this when squashing your PRs and
+setting your commit messages on the main branch.
+
 ## Development
 
 The library is built using [vite][vite]/[node.js][nodejs]. It is recommended that you use
@@ -29,21 +37,13 @@ npm run lint     # runs the js linter.
 npm run test     # runs the test suite.
 ```
 
-Due to automatic version detection in our release process, **all commits to the master branch must follow
-[conventional commits][conventional-commits] formatting.** Pay close attention to this when squashing your PRs and
-setting your commit messages on the main branch.
-
-### Release
+## Release
 
 Releases are (mostly) automated using [semantic-release][semantic-release]. It can be run using the `cd/release` github
 action, which has a manual `workflow_dispatch` trigger.
 
 Again, **all commits to the master branch must follow [conventional commits][conventional-commits] format.** Verify
 that all commits since the last release adhere to the standard before triggering a release.
-
-## Contributing
-
-Bug reports and pull requests are welcome on [GitHub][github].
 
 ## License
 
