@@ -13,7 +13,7 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['jszip', 'papaparse', 'react'],
+      external: ['change-case', 'jszip', 'gtfs-realtime-bindings', 'papaparse', 'react'],
     },
   },
   test: {
