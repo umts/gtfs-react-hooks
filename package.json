@@ -6,12 +6,11 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/gtfs-react-hooks.umd.cjs",
+  "main": "./dist/gtfs-react-hooks.js",
   "module": "./dist/gtfs-react-hooks.js",
   "exports": {
     ".": {
-      "import": "./dist/gtfs-react-hooks.js",
-      "require": "./dist/gtfs-react-hooks.umd.cjs"
+      "import": "./dist/gtfs-react-hooks.js"
     }
   },
   "scripts": {
