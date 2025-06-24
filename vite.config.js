@@ -12,9 +12,11 @@ export default defineConfig({
       fileName: 'gtfs-react-hooks',
     },
     rollupOptions: {
-      external: ['react'],
+      external: ['jszip', 'papaparse', 'react'],
       output: {
         globals: {
+          jszip: 'JSZip',
+          papaparse: 'Papa',
           react: 'React',
         },
       },

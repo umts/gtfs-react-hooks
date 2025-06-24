@@ -21,6 +21,8 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "jszip": "3.*",
+    "papaparse": "5.*",
     "react": "19.*"
   },
   "devDependencies": {
@@ -29,7 +31,9 @@
     "@semantic-release/npm": "*",
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
+    "change-case": "*",
     "eslint": "*",
+    "gtfs-realtime-bindings": "*",
     "jsdom": "*",
     "neostandard": "*",
     "semantic-release": "*",
