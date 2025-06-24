@@ -33,9 +33,10 @@ const gtfsRealtimeAlerts = useGtfsRealtime(fetchGtfsRealtimeAlerts, 1000 * 30)
 
 The object returned by the GTFS Schedule hook follows the [GTFS Schedule Standard][gtfs-schedule-standard]'s structure, except for all field/attribute names being camel cased. Note that our implementation
 operates without checking if the standard is being met. Thus any other files in the zip will be parsed as a CSV and added to the returned object.
+The files are loaded and parsed *asynchronously*. The hook will return `{}` before the first parse finishes, and the previously fetched data while other parsing occurs.
 
 The GTFS Realtime Alerts hook is a thin wrapper around the [GTFS Realtime Language Bindings for Node][gtfs-realtime-node], which follows the [GTFS Realtime Standard][gtfs-realtime-standard]'s structure,
-but camel cases all field/attribute names.
+but camel cases all field/attribute names. This parsing *is not* asynchronous -- you will always receive valid data so long as the resolver and parser don't fail.
 
 If either of the hooks encounters an error during resolving or parsing, they will return `null`.
 
