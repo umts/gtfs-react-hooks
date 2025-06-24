@@ -29,6 +29,7 @@
     "@vitest/coverage-v8": "*",
     "change-case": "*",
     "eslint": "*",
+    "gtfs-realtime-bindings": "*",
     "jsdom": "*",
     "neostandard": "*",
     "vite": "*",
