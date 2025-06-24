@@ -33,8 +33,6 @@ Due to automatic version detection in our release process, **all commits to the 
 [conventional commits][conventional-commits] formatting.** Pay close attention to this when setting your commit
 messages when squashing your PRs.
 
-Note that due to how semantic-release works, all breaking changes **must** include the `BREAKING CHANGE:` footer.
-
 ### Release
 
 Releases are (mostly) automated using [semantic-release][semantic-release]. It can be run using the `cd/release` github
