@@ -38,7 +38,7 @@ setting your commit messages on the main branch.
 Releases are (mostly) automated using [semantic-release][semantic-release]. It can be run using the `cd/release` github
 action, which has a manual `workflow_dispatch` trigger.
 
-Again, **All commits to the master branch must follow [conventional commits][conventional-commits] format.** Verify
+Again, **all commits to the master branch must follow [conventional commits][conventional-commits] format.** Verify
 that all commits since the last release adhere to the standard before triggering a release.
 
 ## Contributing
