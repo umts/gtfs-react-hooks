@@ -14,5 +14,10 @@
       "routeId": "2",
       "routeShortName": "2"
     }
+  ],
+  "stopTimes1": [
+    {
+      "tripId": "1"
+    }
   ]
 }
