@@ -21,4 +21,10 @@ describe('useGtfsRealtime', () => {
     await vi.waitFor(() => expect(result.current).toBeInstanceOf(feedMessage))
     expect(result.current.toJSON()).toEqual(realtimeJSON)
   })
+
+  it('returns null when an error occurs', async () => {
+    const resolve = async () => { throw Error() }
+    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
+    await vi.waitFor(() => expect(result.current).toBeNull())
+  })
 })
