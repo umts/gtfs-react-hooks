@@ -10,6 +10,8 @@ The resolver must be an async function which takes no arguments and returns a `U
 For the schedule hook, this should be the raw zip data coming from your GTFS Schedule endpoint.
 For the realtime hook, this should be the protobuf binary data from your GFTS Realtime Alerts endpoint.
 
+**It is the callee's responsibility to ensure the resolver returns a valid `Uint8Array`.** The hook return `null` if this is not the case.
+
 The timeout defines how often the resolver will be called to fetch new data. This should be defined in milliseconds.
 
 The following is suitable for most purposes:
