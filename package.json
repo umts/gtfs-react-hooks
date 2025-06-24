@@ -20,13 +20,13 @@
     "test": "vitest run --coverage --coverage.thresholds.100"
   },
   "dependencies": {
-    "gtfs-realtime-bindings": "^1.1.1",
     "react": "19.*"
   },
   "devDependencies": {
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "eslint": "*",
+    "gtfs-realtime-bindings": "^1.1.1",
     "jsdom": "*",
     "neostandard": "*",
     "vite": "*",
