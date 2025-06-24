@@ -26,7 +26,7 @@
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "eslint": "*",
-    "gtfs-realtime-bindings": "^1.1.1",
+    "gtfs-realtime-bindings": "*",
     "jsdom": "*",
     "neostandard": "*",
     "vite": "*",
