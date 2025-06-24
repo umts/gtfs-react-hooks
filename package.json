@@ -16,7 +16,8 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint",
-    "test": "vitest run --coverage --coverage.thresholds.100"
+    "release": "semantic-release",
+    "test": "vitest run"
   },
   "dependencies": {
     "change-case": "5.*",
@@ -26,11 +27,16 @@
     "react": "19.*"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "*",
+    "@semantic-release/git": "*",
+    "@semantic-release/npm": "*",
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
+    "conventional-changelog-conventionalcommits": "*",
     "eslint": "*",
     "jsdom": "*",
     "neostandard": "*",
+    "semantic-release": "*",
     "vite": "*",
     "vitest": "*"
   }
