@@ -4,8 +4,8 @@ import fs from 'fs'
 import { describe, expect, it, vi } from 'vitest'
 import useGtfsRealtime from '../lib/useGtfsRealtime.js'
 
-const realtimeBuffer = fs.readFileSync('test/realtime.proto')
-const realtimeJSON = JSON.parse(fs.readFileSync('test/realtime-parsed.json'))
+const realtimeBuffer = fs.readFileSync('test/fixtures/realtime-raw.proto')
+const realtimeJSON = JSON.parse(fs.readFileSync('test/fixtures/realtime-parsed.json'))
 const feedMessage = GtfsRealtimeBindings.transit_realtime.FeedMessage
 
 describe('useGtfsRealtime', () => {
