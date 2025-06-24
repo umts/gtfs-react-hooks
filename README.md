@@ -6,7 +6,7 @@ React hooks for fetching data from gtfs sources.
 
 There are two hooks which this package provides. `useGtfsSchedule` and `useGtfsRealtime`. Both take two arguments, a resolver and a timeout.
 
-The resolver must be an async function which takes no arguments and returns an array buffer containing the raw data for the hook to process.
+The resolver must be an async function which takes no arguments and returns a `Uint8Array` containing the raw data for the hook to process.
 For the schedule hook, this should be the raw zip data coming from your GTFS Schedule endpoint.
 For the realtime hook, this should be the protobuf binary data from your GFTS Realtime Alerts endpoint.
 
