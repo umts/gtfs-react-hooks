@@ -29,7 +29,7 @@ npm run lint     # runs the js linter.
 npm run test     # runs the test suite.
 ```
 
-Due to automatic version detection in our release process, **All commits to the master branch must follow
+Due to automatic version detection in our release process, **all commits to the master branch must follow
 [conventional commits][conventional-commits] formatting.** Pay close attention to this when setting your commit
 messages when squashing your PRs.
 
