@@ -30,8 +30,8 @@ npm run test     # runs the test suite.
 ```
 
 Due to automatic version detection in our release process, **all commits to the master branch must follow
-[conventional commits][conventional-commits] formatting.** Pay close attention to this when setting your commit
-messages when squashing your PRs.
+[conventional commits][conventional-commits] formatting.** Pay close attention to this when squashing your PRs and
+setting your commit messages on the main branch.
 
 ### Release
 
