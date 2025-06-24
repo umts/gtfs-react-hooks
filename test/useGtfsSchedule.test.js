@@ -28,10 +28,7 @@ describe('useGtfsSchedule', () => {
     const resolve = vi.fn()
     resolve.mockImplementationOnce(async () => scheduleBuffer1)
     const { result } = renderHook(() => useGtfsSchedule(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toEqual({
-      agency1: [{ agencyId: 'SATCo', agencyName: 'PVTA' }],
-      routes1: [{ routeId: '1', routeShortName: '1' }, { routeId: '2', routeShortName: '2' }],
-    }))
+    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule1))
     expect(resolve).toHaveBeenCalledTimes(1)
 
     resolve.mockImplementationOnce(async () => scheduleBuffer2)
