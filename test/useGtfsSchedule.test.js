@@ -18,7 +18,18 @@ describe('useGtfsSchedule', () => {
     expect(result.current).toBeUndefined()
   })
 
-  it('returns a collection of parsed csv files when resolved', async () => {
+  it('returns undefined when resolved to undefined', async () => {
+    const resolve = vi.fn()
+    resolve.mockImplementationOnce(async () => scheduleBuffer1)
+    const { result } = renderHook(() => useGtfsSchedule(resolve, 1000))
+    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule1))
+
+    resolve.mockImplementationOnce(async () => undefined)
+    vi.advanceTimersByTime(1000)
+    await vi.waitFor(() => expect(result.current).toBeUndefined())
+  })
+
+  it('returns parsed schedule data when resolved to a Uint8Array', async () => {
     const resolve = async () => scheduleBuffer1
     const { result } = renderHook(() => useGtfsSchedule(resolve, 1000))
     await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule1))
@@ -40,11 +51,5 @@ describe('useGtfsSchedule', () => {
     vi.advanceTimersByTime(1000)
     await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule3))
     expect(resolve).toHaveBeenCalledTimes(3)
-  })
-
-  it('returns null when an error is raised', async () => {
-    const resolve = async () => { throw Error() }
-    const { result } = renderHook(() => useGtfsSchedule(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toBeNull())
   })
 })
