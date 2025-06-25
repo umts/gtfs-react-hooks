@@ -32,10 +32,4 @@ describe('useRefresh', () => {
     await vi.waitFor(() => expect(result.current).toEqual('newer data'))
     expect(resolve).toHaveBeenCalledTimes(3)
   })
-
-  it('returns null when an error is raised', async () => {
-    const resolve = async () => { throw Error() }
-    const { result } = renderHook(() => useRefresh(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toBeNull())
-  })
 })

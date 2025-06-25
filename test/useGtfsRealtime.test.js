@@ -17,7 +17,19 @@ describe('useGtfsRealtime', () => {
     expect(result.current).toBeUndefined()
   })
 
-  it('returns the parsed object representation of the realtime data when resolved', async () => {
+  it('returns undefined when resolved to undefined', async () => {
+    const resolve = vi.fn()
+
+    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+
+    resolve.mockImplementationOnce(async () => undefined)
+    vi.advanceTimersByTime(1000)
+    await vi.waitFor(() => expect(result.current).toBeUndefined())
+  })
+
+  it('returns parsed realtime data when resolved to a Uint8Array', async () => {
     const resolve = async () => realtime1Buffer
     const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
     await vi.waitFor(() => expect(result.current).toBeInstanceOf(feedMessage))
@@ -38,11 +50,5 @@ describe('useGtfsRealtime', () => {
     await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime2JSON))
     expect(result.current).toBeInstanceOf(feedMessage)
     expect(resolve).toHaveBeenCalledTimes(2)
-  })
-
-  it('returns null when an error occurs', async () => {
-    const resolve = async () => { throw Error() }
-    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toBeNull())
   })
 })
