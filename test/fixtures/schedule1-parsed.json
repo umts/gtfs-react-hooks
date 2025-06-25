@@ -1,11 +1,11 @@
 {
-  "agency1": [
+  "agency": [
     {
       "agencyId": "SATCo",
       "agencyName": "PVTA"
     }
   ],
-  "routes1": [
+  "routes": [
     {
       "routeId": "1",
       "routeShortName": "1"
@@ -15,7 +15,7 @@
       "routeShortName": "2"
     }
   ],
-  "stopTimes1": [
+  "stopTimes": [
     {
       "tripId": "1"
     }

@@ -1,11 +1,11 @@
 {
-  "agency2": [
+  "agency": [
     {
       "agencyId": "VATCo",
       "agencyName": "PVTA"
     }
   ],
-  "routes2": [
+  "routes": [
     {
       "routeId": "3",
       "routeShortName": "3"
@@ -13,6 +13,11 @@
     {
       "routeId": "4",
       "routeShortName": "4"
+    }
+  ],
+  "stopTimes": [
+    {
+      "tripId": "2"
     }
   ]
 }
