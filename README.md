@@ -4,13 +4,15 @@ React hooks for fetching data from gtfs sources.
 
 ## Usage
 
-There are two hooks which this package provides. `useGtfsSchedule` and `useGtfsRealtime`. Both take two arguments, a resolver and a timeout.
+There are two hooks which this package provides. `useGtfsSchedule` and `useGtfsRealtime`. Both take two arguments, a
+resolver and a timeout.
 
-The resolver must be an async function which takes no arguments and returns a `Uint8Array` containing the raw data for the hook to process.
-For the schedule hook, this should be the raw zip data coming from your GTFS Schedule endpoint.
-For the realtime hook, this should be the protobuf binary data from your GFTS Realtime Alerts endpoint.
+The resolver must be an async function which takes no arguments and returns a `Uint8Array` containing the raw data for
+the hook to process.
+For the schedule hook, this should be the raw zip data coming from a GTFS Schedule endpoint.
+For the realtime hook, this should be the protobuf binary data from a GFTS Realtime endpoint.
 
-**It is the callee's responsibility to ensure the resolver returns a valid `Uint8Array`.** The hook return `null` if this is not the case.
+**It is the callee's responsibility to ensure the resolver returns a valid `Uint8Array`.**
 
 The timeout defines how often the resolver will be called to fetch new data. This should be defined in milliseconds.
 
@@ -31,12 +33,16 @@ const fetchGtfsRealtimeAlerts = useCallback(async () => {
 const gtfsRealtimeAlerts = useGtfsRealtime(fetchGtfsRealtimeAlerts, 1000 * 30)
 ```
 
-The object returned by the GTFS Schedule hook follows the [GTFS Schedule Standard][gtfs-schedule-standard]'s structure, except for all field/attribute names being camel cased. Note that our implementation
-operates without checking if the standard is being met. Thus any other files in the zip will be parsed as a CSV and added to the returned object.
-The files are loaded and parsed *asynchronously*. The hook will return `{}` before the first parse finishes, and the previously fetched data while other parsing occurs.
+The object returned by the GTFS Schedule hook follows the [GTFS Schedule Standard][gtfs-schedule-standard]'s structure,
+except for all field/attribute names being camel cased. Note that our implementation operates without checking if the
+standard is being met. Thus any other files in the zip will be parsed as a CSV and added to the returned object.
+The files are loaded and parsed *asynchronously*. The hook will return `{}` before the first parse finishes,
+and the previously fetched data while other parsing occurs.
 
-The GTFS Realtime Alerts hook is a thin wrapper around the [GTFS Realtime Language Bindings for Node][gtfs-realtime-node], which follows the [GTFS Realtime Standard][gtfs-realtime-standard]'s structure,
-but camel cases all field/attribute names. This parsing *is not* asynchronous -- you will always receive valid data so long as the resolver and parser don't fail.
+The GTFS Realtime hook is a thin wrapper around the [GTFS Realtime Language Bindings for Node][gtfs-realtime-node],
+which follows the [GTFS Realtime Standard][gtfs-realtime-standard]'s structure, but camel cases all field/attribute
+names. This parsing *is not* asynchronous -- you will always receive valid data so long as the resolver and
+parser don't fail.
 
 If either of the hooks encounters an error during resolving or parsing, they will return `null`.
 
