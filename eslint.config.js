@@ -5,5 +5,5 @@ import neostandard from 'neostandard'
 export default defineConfig([
   globalIgnores(['dist']),
   ...neostandard({ env: ['browser'] }),
-  { extends: [reactHooks.configs['recommended-latest']] }
+  { extends: [reactHooks.configs['recommended-latest']] },
 ])
