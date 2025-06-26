@@ -1,7 +1,7 @@
 {
   "name": "gtfs-react-hooks",
   "description": "React hooks for fetching data from gtfs sources.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "files": [
     "dist"
