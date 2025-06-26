@@ -44,6 +44,7 @@ Note that due to dependency constraints, this library must be processed by a bun
  *
  * @param {Resolver} resolve - a resolver that returns raw zipped gtfs schedule data.
  * @param {Number} timeout - the time in ms between periodic refreshes.
+ * @param {Number} [retry=1000] - the time in ms to retry a refresh if the previous one failed.
  * @return {{}|undefined} parsed data if resolved, undefined if not.
  */
 export function useGtfsSchedule (resolve, timeout) { }
@@ -56,6 +57,7 @@ export function useGtfsSchedule (resolve, timeout) { }
  *
  * @param {Resolver} resolve - a resolver that returns raw gtfs-rt protobuf data.
  * @param {Number} timeout - the time in ms between periodic refreshes.
+ * @param {Number} [retry=1000] - the time in ms to retry a refresh if the previous one failed.
  * @return {FeedMessage|undefined} parsed data if resolved, undefined if not.
  */
 export function useGtfsRealtime (resolve, timeout) { }

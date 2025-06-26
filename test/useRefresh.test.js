@@ -11,25 +11,35 @@ describe('useRefresh', () => {
 
   it('returns resolution when resolved', async () => {
     const resolve = async () => 'data'
-    const { result } = renderHook(() => useRefresh(resolve, 1000))
+    const { result } = renderHook(() => useRefresh(resolve, 5000, 1000))
     await vi.waitFor(() => expect(result.current).toEqual('data'))
   })
 
-  it('periodically re-resolves according to the given timeout', async () => {
+  it('periodically re-resolves according to the given timeout and retry values', async () => {
     const resolve = vi.fn()
-    resolve.mockImplementationOnce(async () => 'old data')
-    const { result } = renderHook(() => useRefresh(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toEqual('old data'))
+    resolve.mockImplementationOnce(async () => 'data')
+    const { result } = renderHook(() => useRefresh(resolve, 5000, 1000))
+
+    await vi.waitFor(() => expect(result.current).toEqual('data'))
     expect(resolve).toHaveBeenCalledTimes(1)
 
-    resolve.mockImplementationOnce(async () => 'new data')
-    vi.advanceTimersByTime(1000)
-    await vi.waitFor(() => expect(result.current).toEqual('new data'))
+    // create a problem and wait for the next regular refresh
+    resolve.mockImplementationOnce(async () => undefined)
+    vi.advanceTimersByTime(5000)
+
+    await vi.waitFor(() => expect(result.current).toEqual(undefined))
     expect(resolve).toHaveBeenCalledTimes(2)
 
-    resolve.mockImplementationOnce(async () => 'newer data')
+    // fix problem and wait for the next retry refresh
+    resolve.mockImplementationOnce(async () => 'data')
     vi.advanceTimersByTime(1000)
-    await vi.waitFor(() => expect(result.current).toEqual('newer data'))
+
+    await vi.waitFor(() => expect(result.current).toEqual('data'))
     expect(resolve).toHaveBeenCalledTimes(3)
+
+    // wait for the next regular refresh
+    vi.advanceTimersByTime(5000)
+
+    expect(resolve).toHaveBeenCalledTimes(4)
   })
 })
