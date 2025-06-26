@@ -53,7 +53,7 @@ export function useGtfsSchedule (resolve, timeout) {
  * A hook that fetches, parses and periodically refreshes GTFS Realtime data.
  *
  * The data is parsed using the gtfs-realtime-bindings library and is returned in the form of a FeedMessage object
- * (see the library/standard for structure).
+ * (see the standard for structure).
  *
  * @param {Resolver} resolve - a resolver that returns raw gtfs-rt protobuf data.
  * @param {Number} timeout - the time in ms between periodic refreshes.
