@@ -74,7 +74,7 @@ export function useGtfsRealtime (resolve, timeout) { }
  * @param {string} url - the url to send requests to.
  * @return {Resolver} a simple fetch resolver.
  */
-export default function useFetchResolver (url) { }
+export function useFetchResolver (url) { }
 ```
 
 ### Examples
