@@ -36,5 +36,10 @@ describe('useRefresh', () => {
 
     await vi.waitFor(() => expect(result.current).toEqual('data'))
     expect(resolve).toHaveBeenCalledTimes(3)
+
+    // wait for the next regular refresh
+    vi.advanceTimersByTime(5000)
+
+    expect(resolve).toHaveBeenCalledTimes(4)
   })
 })
