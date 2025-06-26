@@ -1,6 +1,9 @@
+import { defineConfig, globalIgnores } from 'eslint/config'
+import reactHooks from 'eslint-plugin-react-hooks'
 import neostandard from 'neostandard'
 
-export default [
-  { ignores: ['dist/*', 'coverage/*'] },
+export default defineConfig([
+  globalIgnores(['dist', 'coverage']),
   ...neostandard({ env: ['browser'] }),
-]
+  { extends: [reactHooks.configs['recommended-latest']] },
+])
