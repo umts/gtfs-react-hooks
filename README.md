@@ -65,20 +65,24 @@ export function useGtfsRealtime (resolve, timeout) {
 
 ### Examples
 
-```js
-const fetchGtfsSchedule = useCallback(async () => {
-  const response = await fetch('https://your-domain.com/gtfs_schedule.zip')
-  return new Uint8Array(await response.arrayBuffer())
-}, [])
+```javascript
+export default function MyComponent() {
+  // gtfs schedule data
+  const scheduleResolver = useCallback(() => {
+    const response = await fetch('https://your-domain.com/gtfs_schedule.zip')
+    return new Uint8Array(await response.arrayBuffer())
+  }, [])
+  const gtfsSchedule = useGtfsSchedule(scheduleResolver, 1000 * 60 * 60 * 24)
 
-const gtfsSchedule = useGtfsSchedule(fetchGtfsSchedule, 1000 * 60 * 60 * 24)
-
-const fetchGtfsRealtimeAlerts = useCallback(async () => {
-  const response = await fetch('https://your-domain.com/gtfs-realtime-alerts')
-  return new Uint8Array(await response.arrayBuffer())
-}, [])
-
-const gtfsRealtimeAlerts = useGtfsRealtime(fetchGtfsRealtimeAlerts, 1000 * 30)
+  // gtfs realtime data
+  const realtimeAlertsResolver = useCallback(async () => {
+    const response = await fetch('https://your-domain.com/gtfs-realtime-alerts')
+    return new Uint8Array(await response.arrayBuffer())
+  }, [])
+  const gtfsRealtimeAlerts = useGtfsRealtime(realtimeAlertsResolver, 1000 * 30)
+  
+  // ...
+}
 ```
 
 ## Contributing
