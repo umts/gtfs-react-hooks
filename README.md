@@ -46,7 +46,7 @@ Note that due to dependency constraints, this library must be processed by a bun
  * @param {Number} timeout - the time in ms between periodic refreshes.
  * @return {{}|undefined} parsed data if resolved, undefined if not.
  */
-export default function useGtfsSchedule (resolve, timeout) {
+export function useGtfsSchedule (resolve, timeout) {
 }
 
 /**
@@ -66,6 +66,9 @@ export function useGtfsRealtime (resolve, timeout) {
 ### Examples
 
 ```javascript
+import { useGtfsRealtime, useGtfsSchedule } from 'gtfs-react-hooks'
+import { useCallback } from 'react'
+
 export default function MyComponent() {
   // gtfs schedule data
   const scheduleResolver = useCallback(() => {
