@@ -46,8 +46,7 @@ Note that due to dependency constraints, this library must be processed by a bun
  * @param {Number} timeout - the time in ms between periodic refreshes.
  * @return {{}|undefined} parsed data if resolved, undefined if not.
  */
-export function useGtfsSchedule (resolve, timeout) {
-}
+export function useGtfsSchedule (resolve, timeout) { }
 
 /**
  * A hook that resolves, parses and periodically refreshes GTFS Realtime data.
@@ -59,29 +58,38 @@ export function useGtfsSchedule (resolve, timeout) {
  * @param {Number} timeout - the time in ms between periodic refreshes.
  * @return {FeedMessage|undefined} parsed data if resolved, undefined if not.
  */
-export function useGtfsRealtime (resolve, timeout) {
-}
+export function useGtfsRealtime (resolve, timeout) { }
+
+/**
+ * A convenience hook that creates a simple GTFS data resolver using the fetch API.
+ *
+ * It will send simple GET requests to the given url. If the response status is OK, it will
+ * return the raw response body as a Uint8Array.
+ *
+ * If any errors occur or if the response status is not OK, it will return undefined.
+ * 
+ * If you need to use a different API for retrieving your data, use more advanced fetch options or add side effects
+ * when errors occur, it is reccommended that you write your own resolver.
+ *
+ * @param {string} url - the url to send requests to.
+ * @return {Resolver} a simple fetch resolver.
+ */
+export function useFetchResolver (url) { }
 ```
 
 ### Examples
 
 ```javascript
-import { useGtfsRealtime, useGtfsSchedule } from 'gtfs-react-hooks'
+import { useFetchResolver, useGtfsRealtime, useGtfsSchedule } from 'gtfs-react-hooks'
 import { useCallback } from 'react'
 
 export default function MyComponent() {
   // gtfs schedule data
-  const scheduleResolver = useCallback(() => {
-    const response = await fetch('https://your-domain.com/gtfs_schedule.zip')
-    return new Uint8Array(await response.arrayBuffer())
-  }, [])
+  const scheduleResolver = useFetchResolver('https://your-domain.com/gtfs_schedule.zip')
   const gtfsSchedule = useGtfsSchedule(scheduleResolver, 1000 * 60 * 60 * 24)
 
   // gtfs realtime data
-  const realtimeAlertsResolver = useCallback(async () => {
-    const response = await fetch('https://your-domain.com/gtfs-realtime-alerts')
-    return new Uint8Array(await response.arrayBuffer())
-  }, [])
+  const realtimeAlertsResolver = useFetchResolver('https://your-domain.com/gtfs-realtime-alerts')
   const gtfsRealtimeAlerts = useGtfsRealtime(realtimeAlertsResolver, 1000 * 30)
   
   // ...
