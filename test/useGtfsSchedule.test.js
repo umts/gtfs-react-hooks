@@ -52,4 +52,24 @@ describe('useGtfsSchedule', () => {
     await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule3))
     expect(resolve).toHaveBeenCalledTimes(3)
   })
+
+  it('re-resolves according to the retry timeout when resolve fails', async () => {
+    const resolve = vi.fn()
+    resolve.mockImplementationOnce(async () => scheduleBuffer1)
+    const { result } = renderHook(() => useGtfsSchedule(resolve, 5000, 1000))
+
+    expect(result.current).toEqual(undefined)
+    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule1))
+    expect(resolve).toHaveBeenCalledTimes(1)
+
+    resolve.mockImplementationOnce(async () => undefined)
+    vi.advanceTimersByTime(5000)
+    await vi.waitFor(() => expect(result.current).toEqual(undefined))
+    expect(resolve).toHaveBeenCalledTimes(2)
+
+    resolve.mockImplementationOnce(async () => scheduleBuffer1)
+    vi.advanceTimersByTime(1000)
+    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule1))
+    expect(resolve).toHaveBeenCalledTimes(3)
+  })
 })

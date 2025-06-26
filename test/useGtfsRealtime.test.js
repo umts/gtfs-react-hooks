@@ -51,4 +51,24 @@ describe('useGtfsRealtime', () => {
     expect(result.current).toBeInstanceOf(feedMessage)
     expect(resolve).toHaveBeenCalledTimes(2)
   })
+
+  it('re-resolves according to the retry timeout when resolve fails', async () => {
+    const resolve = vi.fn()
+    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    const { result } = renderHook(() => useGtfsRealtime(resolve, 5000, 1000))
+
+    expect(result.current).toEqual(undefined)
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+    expect(resolve).toHaveBeenCalledTimes(1)
+
+    resolve.mockImplementationOnce(async () => undefined)
+    vi.advanceTimersByTime(5000)
+    await vi.waitFor(() => expect(result.current).toEqual(undefined))
+    expect(resolve).toHaveBeenCalledTimes(2)
+
+    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    vi.advanceTimersByTime(1000)
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+    expect(resolve).toHaveBeenCalledTimes(3)
+  })
 })
