@@ -37,16 +37,18 @@ describe('useGtfsSchedule', () => {
     const resolve = vi.fn()
     resolve.mockImplementationOnce(async () => rawSchedule)
     const { result } = renderHook(() => useGtfsSchedule(resolve, 5000, 1000))
-    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule))
 
+    await vi.waitFor(() => expect(result.current).toEqual(parsedSchedule))
     expect(resolve).toHaveBeenCalledTimes(1)
 
+    // create a problem and wait for the next regular refresh
     resolve.mockImplementationOnce(async () => undefined)
     vi.advanceTimersByTime(5000)
 
     await vi.waitFor(() => expect(result.current).toEqual(undefined))
     expect(resolve).toHaveBeenCalledTimes(2)
 
+    // fix problem and wait for the next retry refresh
     resolve.mockImplementationOnce(async () => rawSchedule)
     vi.advanceTimersByTime(1000)
 

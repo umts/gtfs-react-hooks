@@ -1,74 +1,60 @@
 import { renderHook } from '@testing-library/react'
-import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 import fs from 'fs'
+import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 import { describe, expect, it, vi } from 'vitest'
 import useGtfsRealtime from '../lib/useGtfsRealtime.js'
 
-import realtime1JSON from '../test/fixtures/realtime1-parsed.json'
-import realtime2JSON from '../test/fixtures/realtime2-parsed.json'
-const realtime1Buffer = fs.readFileSync('test/fixtures/realtime1-raw.proto')
-const realtime2Buffer = fs.readFileSync('test/fixtures/realtime2-raw.proto')
-const feedMessage = GtfsRealtimeBindings.transit_realtime.FeedMessage
+import parsedRealtime from './fixtures/realtime.json'
+const rawRealtime = fs.readFileSync('test/fixtures/realtime.proto')
 
 describe('useGtfsRealtime', () => {
   it('returns undefined when unresolved', () => {
-    const resolve = async () => realtime1Buffer
+    const resolve = async () => rawRealtime
     const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
+
     expect(result.current).toBeUndefined()
   })
 
   it('returns undefined when resolved to undefined', async () => {
     const resolve = vi.fn()
-
-    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    resolve.mockImplementationOnce(async () => rawRealtime)
     const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
-    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(parsedRealtime))
 
     resolve.mockImplementationOnce(async () => undefined)
     vi.advanceTimersByTime(1000)
+
     await vi.waitFor(() => expect(result.current).toBeUndefined())
   })
 
   it('returns parsed realtime data when resolved to a Uint8Array', async () => {
-    const resolve = async () => realtime1Buffer
+    const resolve = async () => rawRealtime
     const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
-    await vi.waitFor(() => expect(result.current).toBeInstanceOf(feedMessage))
-    expect(result.current.toJSON()).toEqual(realtime1JSON)
+
+    await vi.waitFor(() => expect(result.current).toBeInstanceOf(GtfsRealtimeBindings.transit_realtime.FeedMessage))
+    expect(result.current.toJSON()).toEqual(parsedRealtime)
   })
 
-  it('re-resolves according to the given timeout', async () => {
+  it('periodically re-resolves according to the given timeout and retry values', async () => {
     const resolve = vi.fn()
-
-    resolve.mockImplementationOnce(async () => realtime1Buffer)
-    const { result } = renderHook(() => useGtfsRealtime(resolve, 1000))
-    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
-    expect(result.current).toBeInstanceOf(feedMessage)
-    expect(resolve).toHaveBeenCalledTimes(1)
-
-    resolve.mockImplementationOnce(async () => realtime2Buffer)
-    vi.advanceTimersByTime(1000)
-    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime2JSON))
-    expect(result.current).toBeInstanceOf(feedMessage)
-    expect(resolve).toHaveBeenCalledTimes(2)
-  })
-
-  it('re-resolves according to the retry timeout when resolve fails', async () => {
-    const resolve = vi.fn()
-    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    resolve.mockImplementationOnce(async () => rawRealtime)
     const { result } = renderHook(() => useGtfsRealtime(resolve, 5000, 1000))
 
-    expect(result.current).toEqual(undefined)
-    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(parsedRealtime))
     expect(resolve).toHaveBeenCalledTimes(1)
 
+    // create a problem and wait for the next regular refresh
     resolve.mockImplementationOnce(async () => undefined)
     vi.advanceTimersByTime(5000)
+
     await vi.waitFor(() => expect(result.current).toEqual(undefined))
     expect(resolve).toHaveBeenCalledTimes(2)
 
-    resolve.mockImplementationOnce(async () => realtime1Buffer)
+    // fix problem and wait for the next retry refresh
+    resolve.mockImplementationOnce(async () => rawRealtime)
     vi.advanceTimersByTime(1000)
-    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(realtime1JSON))
+
+    await vi.waitFor(() => expect(result.current.toJSON()).toEqual(parsedRealtime))
     expect(resolve).toHaveBeenCalledTimes(3)
   })
 })
