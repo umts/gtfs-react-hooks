@@ -4,46 +4,88 @@ React hooks for fetching data from gtfs sources.
 
 ## Usage
 
-There are two hooks which this package provides. `useGtfsSchedule` and `useGtfsRealtime`. Both take two arguments, a
-resolver and a timeout.
+The two main hooks provided by this library (`useGtfsSchedule` and `useGtfsRealtime`) handle parsing
+and periodic refreshing of [GTFS Schedule][gtfs-schedule-standard] and [GTFS Realtime][gtfs-realtime-standard] data.
 
-The resolver must be an async function which takes no arguments and returns a `Uint8Array` containing the raw data for
-the hook to process.
-For the schedule hook, this should be the raw zip data coming from a GTFS Schedule endpoint.
-For the realtime hook, this should be the protobuf binary data from a GTFS Realtime endpoint.
-It may also return `undefined`, in which case the hooks will skip parsing and return `undefined` as well.
+The [GTFS Realtime Language Bindings for Node][gtfs-realtime-node] are used for parsing GTFS Realtime data
+and its types are relevant when using the `useGtfsRealtime` hook.
 
-**It is the callee's responsibility to ensure the resolver returns one of these two types.**
+Note that due to dependency constraints, this library must be processed by a bundler such as [vite][vite].
 
-The timeout defines how often the resolver will be called to fetch new data. This should be defined in milliseconds.
+### API
 
-The object returned by the GTFS Schedule hook follows the [GTFS Schedule Standard][gtfs-schedule-standard]'s structure,
-except for all field/attribute names being camel cased. Note that our implementation operates without checking if the
-standard is being met. Thus any other files in the zip will be parsed as a CSV and added to the returned object.
-Individual schedule files are loaded and parsed *asynchronously*. This means you will initially receive an empty object
-back, which will then be further updated with entries as the files are parsed.
+```javascript
+/**
+ * A resolver callback retrieves and returns raw GTFS data. This type of callback is used as an argument for the two
+ * GTFS hooks offered by this library.
+ *
+ * It may be asynchronous and *must* return either a Uint8Array (when data is successfully retrieved) or undefined
+ * (when data is not successfully retrieved). Any error handling must happen internally.
+ *
+ * @callback Resolver
+ * @return {Uint8Array|undefined|Promise<Uint8Array|undefined>}
+ */
 
-The GTFS Realtime hook is a thin wrapper around the [GTFS Realtime Language Bindings for Node][gtfs-realtime-node],
-which follows the [GTFS Realtime Standard][gtfs-realtime-standard]'s structure, but camel cases all field/attribute
-names. This parsing *is not* asynchronous -- you will always receive valid data so long as the resolver and
-parser don't fail.
+/**
+ * A hook that resolves, parses and periodically refreshes GTFS Schedule data.
+ *
+ * The data is unzipped and its entries are parsed as CSV files internally. File names and properties are converted
+ * from snake_case to camelCase (see the standard for structure).
+ * 
+ * Individual files are parsed asynchronously, and may be updated/made available at different times. Be careful to guard
+ * against this when accessing your data.
+ *
+ * @example
+ *
+ *    const scheduleData = useGtfsSchedule(yourResolver, 10000)
+ * 
+ *    scheduleData?.routes.each(...)  // improper
+ *    scheduleData?.routes?.each(...) // proper
+ *
+ * @param {Resolver} resolve - a resolver that returns raw zipped gtfs schedule data.
+ * @param {Number} timeout - the time in ms between periodic refreshes.
+ * @return {{}|undefined} parsed data if resolved, undefined if not.
+ */
+export function useGtfsSchedule (resolve, timeout) {
+}
+
+/**
+ * A hook that resolves, parses and periodically refreshes GTFS Realtime data.
+ *
+ * The data is parsed using the gtfs-realtime-bindings library and is returned in the form of a FeedMessage object
+ * (see the standard for structure).
+ *
+ * @param {Resolver} resolve - a resolver that returns raw gtfs-rt protobuf data.
+ * @param {Number} timeout - the time in ms between periodic refreshes.
+ * @return {FeedMessage|undefined} parsed data if resolved, undefined if not.
+ */
+export function useGtfsRealtime (resolve, timeout) {
+}
+```
 
 ### Examples
 
-```js
-const fetchGtfsSchedule = useCallback(async () => {
-  const response = await fetch('https://your-domain.com/gtfs_schedule.zip')
-  return new Uint8Array(await response.arrayBuffer())
-}, [])
+```javascript
+import { useGtfsRealtime, useGtfsSchedule } from 'gtfs-react-hooks'
+import { useCallback } from 'react'
 
-const gtfsSchedule = useGtfsSchedule(fetchGtfsSchedule, 1000 * 60 * 60 * 24)
+export default function MyComponent() {
+  // gtfs schedule data
+  const scheduleResolver = useCallback(() => {
+    const response = await fetch('https://your-domain.com/gtfs_schedule.zip')
+    return new Uint8Array(await response.arrayBuffer())
+  }, [])
+  const gtfsSchedule = useGtfsSchedule(scheduleResolver, 1000 * 60 * 60 * 24)
 
-const fetchGtfsRealtimeAlerts = useCallback(async () => {
-  const response = await fetch('https://your-domain.com/gtfs-realtime-alerts')
-  return new Uint8Array(await response.arrayBuffer())
-}, [])
-
-const gtfsRealtimeAlerts = useGtfsRealtime(fetchGtfsRealtimeAlerts, 1000 * 30)
+  // gtfs realtime data
+  const realtimeAlertsResolver = useCallback(async () => {
+    const response = await fetch('https://your-domain.com/gtfs-realtime-alerts')
+    return new Uint8Array(await response.arrayBuffer())
+  }, [])
+  const gtfsRealtimeAlerts = useGtfsRealtime(realtimeAlertsResolver, 1000 * 30)
+  
+  // ...
+}
 ```
 
 ## Contributing
