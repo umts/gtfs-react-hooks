@@ -4,7 +4,7 @@ React hooks for fetching data from gtfs sources.
 
 ## Usage
 
-The two main hooks provided by this library (`useGtfsSchedule` and `useGtfsRealtime`) handle fetching, parsing
+The two main hooks provided by this library (`useGtfsSchedule` and `useGtfsRealtime`) handle parsing
 and periodic refreshing of [GTFS Schedule][gtfs-schedule-standard] and [GTFS Realtime][gtfs-realtime-standard] data.
 
 The [GTFS Realtime Language Bindings for Node][gtfs-realtime-node] are used for parsing GTFS Realtime data
@@ -27,7 +27,7 @@ Note that due to dependency constraints, this library must be processed by a bun
  */
 
 /**
- * A hook that fetches, parses and periodically refreshes GTFS Schedule data.
+ * A hook that resolves, parses and periodically refreshes GTFS Schedule data.
  *
  * The data is unzipped and its entries are parsed as CSV files internally. File names and properties are converted
  * from snake_case to camelCase (see the standard for structure).
@@ -50,7 +50,7 @@ export function useGtfsSchedule (resolve, timeout) {
 }
 
 /**
- * A hook that fetches, parses and periodically refreshes GTFS Realtime data.
+ * A hook that resolves, parses and periodically refreshes GTFS Realtime data.
  *
  * The data is parsed using the gtfs-realtime-bindings library and is returned in the form of a FeedMessage object
  * (see the standard for structure).
