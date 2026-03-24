@@ -34,7 +34,7 @@
     "@vitest/coverage-v8": "*",
     "conventional-changelog-conventionalcommits": "*",
     "eslint": "*",
-    "eslint-plugin-react-hooks": "*",
+    "eslint-plugin-react-hooks": "5.2.0",
     "jsdom": "*",
     "neostandard": "*",
     "semantic-release": "*",
