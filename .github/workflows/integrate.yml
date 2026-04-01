@@ -9,4 +9,4 @@ jobs:
     uses: umts/.github/.github/workflows/vite.yml@main
   vitest:
     name: vite
-    uses: umts/.github/.github/workflows/vitest.yml@main
+    uses: umts/.github/.github/workflows/vitest.yml@a24dc139df87adcf4dee88c79afaa00c81c0aaff
