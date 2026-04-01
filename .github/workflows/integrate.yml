@@ -1,27 +1,12 @@
-name: integrate
 on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
+  workflow_call:
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: ./.github/actions/setup
-      - run: npm run build
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: ./.github/actions/setup
-      - run: npm run lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: ./.github/actions/setup
-      - run: npm run test
+  eslint:
+    name: vite
+    uses: umts/.github/.github/workflows/eslint.yml@main
+  vite:
+    name: vite
+    uses: umts/.github/.github/workflows/vite.yml@main
+  vitest:
+    name: vite
+    uses: umts/.github/.github/workflows/vitest.yml@main
