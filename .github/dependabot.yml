@@ -9,6 +9,10 @@ updates:
     schedule:
       interval: daily
     groups:
+      react-packages:
+        patterns:
+          - "react"
+          - "react-dom"
       vite-packages:
         patterns:
           - "@vitejs/*"
