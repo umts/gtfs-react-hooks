@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "lint": "eslint",
+    "lint": "oxlint",
     "release": "semantic-release",
     "test": "vitest run"
   },
@@ -33,10 +33,9 @@
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "conventional-changelog-conventionalcommits": "*",
-    "eslint": "*",
-    "eslint-plugin-react-hooks": "5.2.0",
     "jsdom": "*",
     "neostandard": "*",
+    "oxlint": "*",
     "react-dom": "*",
     "semantic-release": "*",
     "vite": "*",
