@@ -37,6 +37,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "jsdom": "*",
     "neostandard": "*",
+    "react-dom": "*",
     "semantic-release": "*",
     "vite": "*",
     "vitest": "*"
