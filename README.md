@@ -31,14 +31,14 @@ Note that due to dependency constraints, this library must be processed by a bun
  *
  * The data is unzipped and its entries are parsed as CSV files internally. File names and properties are converted
  * from snake_case to camelCase (see the standard for structure).
- * 
+ *
  * Individual files are parsed asynchronously, and may be updated/made available at different times. Be careful to guard
  * against this when accessing your data.
  *
  * @example
  *
  *    const scheduleData = useGtfsSchedule(yourResolver, 10000)
- * 
+ *
  *    scheduleData?.routes.each(...)  // improper
  *    scheduleData?.routes?.each(...) // proper
  *
@@ -47,7 +47,7 @@ Note that due to dependency constraints, this library must be processed by a bun
  * @param {Number} [retry=1000] - the time in ms to retry a refresh if the previous one failed.
  * @return {{}|undefined} parsed data if resolved, undefined if not.
  */
-export function useGtfsSchedule (resolve, timeout) { }
+export function useGtfsSchedule(resolve, timeout) {}
 
 /**
  * A hook that resolves, parses and periodically refreshes GTFS Realtime data.
@@ -60,7 +60,7 @@ export function useGtfsSchedule (resolve, timeout) { }
  * @param {Number} [retry=1000] - the time in ms to retry a refresh if the previous one failed.
  * @return {FeedMessage|undefined} parsed data if resolved, undefined if not.
  */
-export function useGtfsRealtime (resolve, timeout) { }
+export function useGtfsRealtime(resolve, timeout) {}
 
 /**
  * A convenience hook that creates a simple GTFS data resolver using the fetch API.
@@ -69,31 +69,31 @@ export function useGtfsRealtime (resolve, timeout) { }
  * return the raw response body as a Uint8Array.
  *
  * If any errors occur or if the response status is not OK, it will return undefined.
- * 
+ *
  * If you need to use a different API for retrieving your data, use more advanced fetch options or add side effects
  * when errors occur, it is reccommended that you write your own resolver.
  *
  * @param {string} url - the url to send requests to.
  * @return {Resolver} a simple fetch resolver.
  */
-export function useFetchResolver (url) { }
+export function useFetchResolver(url) {}
 ```
 
 ### Examples
 
 ```javascript
-import { useFetchResolver, useGtfsRealtime, useGtfsSchedule } from 'gtfs-react-hooks'
-import { useCallback } from 'react'
+import { useFetchResolver, useGtfsRealtime, useGtfsSchedule } from "gtfs-react-hooks";
+import { useCallback } from "react";
 
 export default function MyComponent() {
   // gtfs schedule data
-  const scheduleResolver = useFetchResolver('https://your-domain.com/gtfs_schedule.zip')
-  const gtfsSchedule = useGtfsSchedule(scheduleResolver, 1000 * 60 * 60 * 24)
+  const scheduleResolver = useFetchResolver("https://your-domain.com/gtfs_schedule.zip");
+  const gtfsSchedule = useGtfsSchedule(scheduleResolver, 1000 * 60 * 60 * 24);
 
   // gtfs realtime data
-  const realtimeAlertsResolver = useFetchResolver('https://your-domain.com/gtfs-realtime-alerts')
-  const gtfsRealtimeAlerts = useGtfsRealtime(realtimeAlertsResolver, 1000 * 30)
-  
+  const realtimeAlertsResolver = useFetchResolver("https://your-domain.com/gtfs-realtime-alerts");
+  const gtfsRealtimeAlerts = useGtfsRealtime(realtimeAlertsResolver, 1000 * 30);
+
   // ...
 }
 ```

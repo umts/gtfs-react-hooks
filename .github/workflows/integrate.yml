@@ -1,9 +1,12 @@
 on:
   workflow_call:
 jobs:
-  eslint:
+  oxfmt:
     name: vite
-    uses: umts/.github/.github/workflows/eslint.yml@main
+    uses: umts/.github/.github/workflows/oxfmt.yml@main
+  oxlint:
+    name: vite
+    uses: umts/.github/.github/workflows/oxlint.yml@main
   vite:
     name: vite
     uses: umts/.github/.github/workflows/vite.yml@main
