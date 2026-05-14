@@ -1,14 +1,11 @@
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   build: {
     lib: {
       name: "GtfsReactHooks",
-      entry: resolve(__dirname, "lib/index.js"),
+      entry: resolve(import.meta.dirname, "lib/index.js"),
       fileName: "gtfs-react-hooks",
       formats: ["es"],
     },

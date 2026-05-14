@@ -13,7 +13,17 @@ export default defineConfig({
   rules: {
     "no-undefined": "off",
     "import/no-default-export": "off",
+    "import/no-relative-parent-imports": "off",
     "oxc/no-async-await": "off",
     "oxc/no-rest-spread-properties": "off",
   },
+  overrides: [
+    {
+      files: ["*.test.js"],
+      rules: {
+        "max-lines-per-function": "off",
+        "vitest/require-test-timeout": "off",
+      },
+    },
+  ],
 });

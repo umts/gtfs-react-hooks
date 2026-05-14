@@ -4,9 +4,7 @@ import useFetchResolver from "../lib/useFetchResolver.js";
 
 describe("useFetchResolver", () => {
   it("returns undefined when an error is raised", async () => {
-    const fetchMock = vi.fn(async () => {
-      throw new Error();
-    });
+    const fetchMock = vi.fn(() => Promise.reject());
     vi.stubGlobal("fetch", fetchMock);
 
     const { result } = renderHook(() => useFetchResolver("https://example.com"));
@@ -16,7 +14,7 @@ describe("useFetchResolver", () => {
   });
 
   it("returns undefined when the response is not a 200", async () => {
-    const fetchMock = vi.fn(async () => ({ status: 503 }));
+    const fetchMock = vi.fn(() => Promise.resolve({ status: 503 }));
     vi.stubGlobal("fetch", fetchMock);
 
     const { result } = renderHook(() => useFetchResolver("https://example.com"));
@@ -26,14 +24,13 @@ describe("useFetchResolver", () => {
   });
 
   it("returns the raw response body as a Uint8Array when response is a 200", async () => {
-    const fetchMock = vi.fn(async () => {
-      const buffer = new ArrayBuffer(8);
-      const view = new Uint8Array(buffer);
-      for (let i = 0; i < 8; i++) {
-        view[i] = i;
-      }
-      return { status: 200, arrayBuffer: async () => buffer };
-    });
+    const buffer = new ArrayBuffer(8);
+    const bufferView = new Uint8Array(buffer);
+    for (let i = 0; i < 8; i += 1) bufferView[i] = i;
+
+    const fetchMock = vi.fn(() =>
+      Promise.resolve({ status: 200, arrayBuffer: () => Promise.resolve(buffer) }),
+    );
     vi.stubGlobal("fetch", fetchMock);
 
     const { result } = renderHook(() => useFetchResolver("https://example.com"));
