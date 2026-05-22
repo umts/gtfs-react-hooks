@@ -21,9 +21,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "change-case": "5.*",
-    "fflate": "0.*",
-    "papaparse": "5.*"
+    "change-case": "*",
+    "fflate": "*",
+    "papaparse": "*"
   },
   "devDependencies": {
     "@semantic-release/changelog": "*",
