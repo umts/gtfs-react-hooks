@@ -1,3 +1,15 @@
+## [1.1.1](https://github.com/umts/gtfs-react-hooks/compare/v1.1.0...v1.1.1) (2026-05-22)
+
+### Bug Fixes
+
+* bundle smaller dependencies to avoid parent nesting ([#116](https://github.com/umts/gtfs-react-hooks/issues/116)) ([1090ff0](https://github.com/umts/gtfs-react-hooks/commit/1090ff018f70d245cce302784943d80657c4f170))
+* **deps:** convert react to peer dep ([#114](https://github.com/umts/gtfs-react-hooks/issues/114)) ([4ceb9d6](https://github.com/umts/gtfs-react-hooks/commit/4ceb9d623087bca96ea1efb6e1773330d75d8780))
+* **deps:** support gtfs-realtime-bindings 2.x and convert to peer dep ([#111](https://github.com/umts/gtfs-react-hooks/issues/111)) ([07cafc6](https://github.com/umts/gtfs-react-hooks/commit/07cafc69c9c1b9bf0bf6346b4b8540a8e7f578c2))
+
+### Performance Improvements
+
+* switch from jszip to fflate ([#115](https://github.com/umts/gtfs-react-hooks/issues/115)) ([5e267e7](https://github.com/umts/gtfs-react-hooks/commit/5e267e76fc6676a418968ca4864032baa4355f18))
+
 ## [1.1.0](https://github.com/umts/gtfs-react-hooks/compare/v1.0.0...v1.1.0) (2025-06-26)
 
 ### Features
