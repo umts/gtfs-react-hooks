@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "change-case": "5.*",
-    "gtfs-realtime-bindings": "1.*",
     "jszip": "3.*",
     "papaparse": "5.*",
     "react": "19.*"
@@ -41,5 +40,8 @@
     "semantic-release": "*",
     "vite": "*",
     "vitest": "*"
+  },
+  "peerDependencies": {
+    "gtfs-realtime-bindings": "1.* || 2.*"
   }
 }
