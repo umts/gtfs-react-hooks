@@ -4,18 +4,20 @@ updates:
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: "chore(deps):"
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
     commit-message:
-      prefix: "chore(deps)"
+      prefix: "chore(deps):"
     ignore:
-      - dependency-name: "react"
-      - dependency-name: "gtfs-realtime-bindings"
       - dependency-name: "change-case"
       - dependency-name: "fflate"
+      - dependency-name: "gtfs-realtime-bindings"
       - dependency-name: "papaparse"
+      - dependency-name: "react"
     groups:
       vite-packages:
         patterns:
@@ -31,10 +33,10 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "fix(deps)"
+      prefix: "fix(deps):"
     allow:
-      - dependency-name: "react"
-      - dependency-name: "gtfs-realtime-bindings"
       - dependency-name: "change-case"
       - dependency-name: "fflate"
+      - dependency-name: "gtfs-realtime-bindings"
       - dependency-name: "papaparse"
+      - dependency-name: "react"
