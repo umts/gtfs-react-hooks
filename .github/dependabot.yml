@@ -8,11 +8,15 @@ updates:
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "react"
+      - dependency-name: "gtfs-realtime-bindings"
+      - dependency-name: "change-case"
+      - dependency-name: "fflate"
+      - dependency-name: "papaparse"
     groups:
-      react-packages:
-        patterns:
-          - "react"
-          - "react-dom"
       vite-packages:
         patterns:
           - "@vitejs/*"
@@ -22,3 +26,15 @@ updates:
           - "vitest*"
           - "@vitest/*"
           - "@testing-library/*"
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: "fix(deps)"
+    allow:
+      - dependency-name: "react"
+      - dependency-name: "gtfs-realtime-bindings"
+      - dependency-name: "change-case"
+      - dependency-name: "fflate"
+      - dependency-name: "papaparse"
