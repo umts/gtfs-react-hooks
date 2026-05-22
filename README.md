@@ -125,13 +125,14 @@ npm install # bundle dependencies
 
 ```sh
 npm run build    # builds the library.
+npm run fmt      # runs the js formatter.
 npm run lint     # runs the js linter.
 npm run test     # runs the test suite.
 ```
 
 ## Release
 
-Releases are (mostly) automated using [semantic-release][semantic-release]. It can be run using the `cd/release` github
+Releases are (mostly) automated using [semantic-release][semantic-release]. It can be run using the `deploy.yml` github
 action, which has a manual `workflow_dispatch` trigger.
 
 Again, **all commits to the master branch must follow [conventional commits][conventional-commits] format.** Verify
