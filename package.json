@@ -20,9 +20,11 @@
     "lint": "oxlint",
     "test": "vitest run"
   },
+  "peerDependencies": {
+    "gtfs-realtime-bindings": "1.* || 2.*"
+  },
   "dependencies": {
     "change-case": "5.*",
-    "gtfs-realtime-bindings": "2.*",
     "jszip": "3.*",
     "papaparse": "5.*",
     "react": "19.*"
