@@ -23,8 +23,7 @@
   "dependencies": {
     "change-case": "5.*",
     "jszip": "3.*",
-    "papaparse": "5.*",
-    "react": "19.*"
+    "papaparse": "5.*"
   },
   "devDependencies": {
     "@semantic-release/changelog": "*",
@@ -42,6 +41,7 @@
     "vitest": "*"
   },
   "peerDependencies": {
-    "gtfs-realtime-bindings": "1.* || 2.*"
+    "gtfs-realtime-bindings": "1.* || 2.*",
+    "react": "19.*"
   }
 }
