@@ -20,9 +20,6 @@
     "lint": "oxlint",
     "test": "vitest run"
   },
-  "peerDependencies": {
-    "gtfs-realtime-bindings": "1.* || 2.*"
-  },
   "dependencies": {
     "change-case": "5.*",
     "jszip": "3.*",
@@ -43,5 +40,8 @@
     "semantic-release": "*",
     "vite": "*",
     "vitest": "*"
+  },
+  "peerDependencies": {
+    "gtfs-realtime-bindings": "1.* || 2.*"
   }
 }
