@@ -20,21 +20,19 @@
     "lint": "oxlint",
     "test": "vitest run"
   },
-  "dependencies": {
-    "change-case": "*",
-    "fflate": "*",
-    "papaparse": "*"
-  },
   "devDependencies": {
     "@semantic-release/changelog": "*",
     "@semantic-release/git": "*",
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
+    "change-case": "*",
     "conventional-changelog-conventionalcommits": "*",
+    "fflate": "*",
     "jsdom": "*",
     "neostandard": "*",
     "oxfmt": "*",
     "oxlint": "*",
+    "papaparse": "*",
     "react-dom": "*",
     "semantic-release": "*",
     "vite": "*",

@@ -10,7 +10,7 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["change-case", "jszip", "gtfs-realtime-bindings", "papaparse", "react"],
+      external: ["gtfs-realtime-bindings", "react"],
     },
   },
   test: {
