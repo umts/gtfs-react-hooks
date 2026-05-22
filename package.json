@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "change-case": "5.*",
+    "fflate": "0.*",
     "jszip": "3.*",
     "papaparse": "5.*"
   },
