@@ -17,7 +17,7 @@ describe("useGtfsScheduleCsv", () => {
     const resolve = vi.fn();
     resolve.mockImplementationOnce(() => Promise.resolve(rawFile));
     const { result } = renderHook(() => useGtfsScheduleCsv(resolve, 1000));
-    await vi.waitFor(() => expect(result.current).toEqual(parsedFile));
+    await vi.waitFor(() => expect(result.current).toEqual(parsedFile.routes));
 
     resolve.mockImplementationOnce(() => Promise.resolve());
     vi.advanceTimersByTime(1000);
@@ -27,7 +27,7 @@ describe("useGtfsScheduleCsv", () => {
 
   it("returns parsed route data when resolved to a csv file", async () => {
     const { result } = renderHook(() => useGtfsScheduleCsv(() => Promise.resolve(rawFile), 1000));
-    await vi.waitFor(() => expect(result.current).toEqual(parsedFile));
+    await vi.waitFor(() => expect(result.current).toEqual(parsedFile.routes));
   });
 
   it("periodically re-resolves according to the given timeout and retry values", async () => {
@@ -35,7 +35,7 @@ describe("useGtfsScheduleCsv", () => {
     resolve.mockImplementationOnce(() => Promise.resolve(rawFile));
     const { result } = renderHook(() => useGtfsScheduleCsv(resolve, 5000, 1000));
 
-    await vi.waitFor(() => expect(result.current).toEqual(parsedFile));
+    await vi.waitFor(() => expect(result.current).toEqual(parsedFile.routes));
     expect(resolve).toHaveBeenCalledTimes(1);
 
     // create a problem and wait for the next regular refresh
@@ -49,7 +49,7 @@ describe("useGtfsScheduleCsv", () => {
     resolve.mockImplementationOnce(() => Promise.resolve(rawFile));
     vi.advanceTimersByTime(1000);
 
-    await vi.waitFor(() => expect(result.current).toEqual(parsedFile));
+    await vi.waitFor(() => expect(result.current).toEqual(parsedFile.routes));
     expect(resolve).toHaveBeenCalledTimes(3);
   });
 });
