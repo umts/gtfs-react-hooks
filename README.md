@@ -50,6 +50,20 @@ Note that due to dependency constraints, this library must be processed by a bun
 export function useGtfsSchedule(resolve, timeout) {}
 
 /**
+ * A hook that resolves, parses and periodically refreshes GTFS Schedule subfile data.
+ *
+ * The data is parsed as a CSV files internally. Properties are converted
+ * from snake_case to camelCase (see the standard for structure).
+ *
+ *
+ * @param {Resolver} resolve - a resolver that returns raw zipped gtfs schedule data.
+ * @param {Number} timeout - the time in ms between periodic refreshes.
+ * @param {Number} [retry=1000] - the time in ms to retry a refresh if the previous one failed.
+ * @return {{}|undefined} parsed data if resolved, undefined if not.
+ */
+export function useGtfsScheduleCsv(resolve, timeout) {}
+
+/**
  * A hook that resolves, parses and periodically refreshes GTFS Realtime data.
  *
  * The data is parsed using the gtfs-realtime-bindings library and is returned in the form of a FeedMessage object
