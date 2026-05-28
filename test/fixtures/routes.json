@@ -1,0 +1,59 @@
+{
+  "json": [
+    {
+      "agencyId": "DTA",
+      "routeColor": "",
+      "routeDesc": "",
+      "routeId": "AB",
+      "routeLongName": "Airport - Bullfrog",
+      "routeShortName": "10",
+      "routeTextColor": "",
+      "routeType": "3",
+      "routeUrl": ""
+    },
+    {
+      "agencyId": "DTA",
+      "routeColor": "",
+      "routeDesc": "",
+      "routeId": "BFC",
+      "routeLongName": "Bullfrog - Furnace Creek Resort",
+      "routeShortName": "20",
+      "routeTextColor": "",
+      "routeType": "3",
+      "routeUrl": ""
+    },
+    {
+      "agencyId": "DTA",
+      "routeColor": "",
+      "routeDesc": "",
+      "routeId": "STBA",
+      "routeLongName": "Stagecoach - Airport Shuttle",
+      "routeShortName": "30",
+      "routeTextColor": "",
+      "routeType": "3",
+      "routeUrl": ""
+    },
+    {
+      "agencyId": "DTA",
+      "routeColor": "",
+      "routeDesc": "",
+      "routeId": "CITY",
+      "routeLongName": "City",
+      "routeShortName": "40",
+      "routeTextColor": "",
+      "routeType": "3",
+      "routeUrl": ""
+    },
+    {
+      "agencyId": "DTA",
+      "routeColor": "",
+      "routeDesc": "",
+      "routeId": "AAMV",
+      "routeLongName": "Airport - Amargosa Valley",
+      "routeShortName": "50",
+      "routeTextColor": "",
+      "routeType": "3",
+      "routeUrl": ""
+    }
+  ]
+}
