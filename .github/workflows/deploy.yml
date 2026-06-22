@@ -13,7 +13,7 @@ jobs:
         with:
           client-id: ${{ secrets.SEMANTIC_RELEASE_CLIENT_ID }}
           private-key: ${{ secrets.SEMANTIC_RELEASE_PRIVATE_KEY }}
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           token: ${{ steps.generate-token.outputs.token }}
       - uses: actions/setup-node@v6
