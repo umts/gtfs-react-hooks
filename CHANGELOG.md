@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/umts/gtfs-react-hooks/compare/v1.2.0...v1.2.1) (2026-06-22)
+
+### Bug Fixes
+
+* **deps:** bump papaparse from 5.5.3 to 5.5.4 ([#137](https://github.com/umts/gtfs-react-hooks/issues/137)) ([16cb742](https://github.com/umts/gtfs-react-hooks/commit/16cb742b8ee6e562a1728bd23c8bedc955aed648))
+
 ## [1.2.0](https://github.com/umts/gtfs-react-hooks/compare/v1.1.1...v1.2.0) (2026-05-28)
 
 ### Features
