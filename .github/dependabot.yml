@@ -4,6 +4,8 @@ updates:
     directory: /
     schedule:
       interval: daily
+    commit-message:
+      prefix: chore(deps)
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -22,3 +24,5 @@ updates:
           - "vitest*"
           - "@vitest/*"
           - "@testing-library/*"
+    commit-message:
+      prefix: chore(deps)
