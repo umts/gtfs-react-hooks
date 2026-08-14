@@ -32,7 +32,6 @@
     "conventional-changelog-conventionalcommits": "*",
     "fflate": "*",
     "jsdom": "*",
-    "neostandard": "*",
     "oxfmt": "*",
     "oxlint": "*",
     "papaparse": "*",
