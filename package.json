@@ -44,5 +44,9 @@
   "peerDependencies": {
     "gtfs-realtime-bindings": "1.* || 2.*",
     "react": "19.*"
+  },
+  "allowScripts": {
+    "fsevents": true,
+    "protobufjs": true
   }
 }
