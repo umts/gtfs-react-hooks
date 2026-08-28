@@ -3,13 +3,13 @@ on:
 jobs:
   oxfmt:
     name: vite
-    uses: umts/.github/.github/workflows/oxfmt.yml@main
+    uses: umts/shared-workflows/.github/workflows/oxfmt.yml@b399eba4e22680fa25d034c61c03a46946a23775
   oxlint:
     name: vite
-    uses: umts/.github/.github/workflows/oxlint.yml@main
+    uses: umts/shared-workflows/.github/workflows/oxlint.yml@b399eba4e22680fa25d034c61c03a46946a23775
   vite:
     name: vite
-    uses: umts/.github/.github/workflows/vite.yml@main
+    uses: umts/shared-workflows/.github/workflows/vite.yml@b399eba4e22680fa25d034c61c03a46946a23775
   vitest:
     name: vite
-    uses: umts/.github/.github/workflows/vitest.yml@main
+    uses: umts/shared-workflows/.github/workflows/vitest.yml@b399eba4e22680fa25d034c61c03a46946a23775
