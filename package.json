@@ -27,7 +27,7 @@
     "@testing-library/react": "*",
     "@vitest/coverage-v8": "*",
     "change-case": "*",
-    "conventional-changelog-conventionalcommits": "< 10",
+    "conventional-changelog-conventionalcommits": "< 11",
     "fflate": "*",
     "jsdom": "*",
     "neostandard": "*",
