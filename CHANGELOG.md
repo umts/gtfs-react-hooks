@@ -4,7 +4,7 @@
 > Release notes are now provided exclusively with
 > [github releases](https://github.com/umts/gtfs-react-hooks/releases).
 
---- 
+---
 
 ## [1.2.2](https://github.com/umts/gtfs-react-hooks/compare/v1.2.1...v1.2.2) (2026-08-13)
 
