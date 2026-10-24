@@ -4,7 +4,7 @@ import useFetchResolver from "../lib/useFetchResolver.js";
 
 describe("useFetchResolver", () => {
   it("returns undefined when an error is raised", async () => {
-    const fetchMock = vi.fn(() => Promise.reject());
+    const fetchMock = vi.fn(() => Promise.reject(new Error("some sort of fetch error")));
     vi.stubGlobal("fetch", fetchMock);
 
     const { result } = renderHook(() => useFetchResolver("https://example.com"));
