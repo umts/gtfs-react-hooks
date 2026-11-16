@@ -39,7 +39,7 @@
     "vitest": "*"
   },
   "peerDependencies": {
-    "gtfs-realtime-bindings": "1.* || 2.*",
+    "gtfs-realtime-bindings": "1.* || 2.* || 3.*",
     "react": "19.*"
   },
   "allowScripts": {
